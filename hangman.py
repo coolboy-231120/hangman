@@ -36,11 +36,9 @@ while True:
     
     match difficulty:
         case "easy": 
-           
             easy = True
             difficulty = ""
         case "medium":
-            tries = 6
             medium = True
             difficulty = ""
             
