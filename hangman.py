@@ -1,5 +1,5 @@
 import random
-import turtle
+import requests
 #choose a word 
 #only end the game when the word is finished or they ran out of tries
 #ask the user to guess a character of the word
@@ -24,13 +24,13 @@ word_dict = {
 secret_word = random.choice(list(word_dict.keys())) 
 current_word = ["_"] * len(secret_word)
 tries = 6
+
 difficulty = input("Please select difficulty (easy,medium or hard):")
 easy = False
 medium = False
 hard = False
 valed = True
 made_guess = []
-jim = turtle.Turtle()
 correct_guess = False
 while True:
     
@@ -49,7 +49,7 @@ while True:
             
         case _:
             print("invalid please choose from the options")
-            valed = False
+            valid = False
             break
     
 
