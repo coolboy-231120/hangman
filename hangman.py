@@ -1,10 +1,11 @@
 import random
-import tkinter
+from tkinter import *
 #choose a word 
 #only end the game when the word is finished or they ran out of tries
 #ask the user to guess a character of the word
 #if they fail i deduct one point from the tries 
 #if they win i type the character in its respective placwe
+#
 word_dict = {
     "banana": "A yellow fruit that monkeys love to eat.",
     "computer": "An electronic device that can perform various tasks and calculations.",
@@ -28,7 +29,7 @@ difficulty = input("Please select difficulty (easy,medium or hard):")
 easy = False
 medium = False
 hard = False
-valed = True
+valid = True
 made_guess = []
 correct_guess = False
 while True:
@@ -72,39 +73,41 @@ while True:
           break
         
 
-
-while tries > 0 and '_' in current_word and valed == True:
-    guess = input("do you want a hint or you want to guess? (Enter one characteror type Hint): ")
+def guesses():
+    global tries
+    global made_guess
+    while tries > 0 and '_' in current_word and valid == True:
+        guess = input("do you want a hint or you want to guess? (Enter one characteror type Hint): ")
     
-   
 
-    
-    if guess in made_guess:
-        print("you already guessed that")
-    
-    elif guess =="Hint":
+        
+        if guess in made_guess:
+            print("you already guessed that")
+        
+        elif guess =="Hint":
 
-        print(word_dict[secret_word])
-    elif len(guess) != 1:
-        print("input only one character")
-    elif guess in secret_word and guess != "Hint" and len(guess) == 1 :
-        indices = [i for i, letter in enumerate(secret_word) if letter == guess]
-        for index in indices:
-            current_word[index] = guess
-        print("Correct!")
-        print(' '.join(current_word))
-        made_guess += guess
-        correct_guess = True
+            print(word_dict[secret_word])
+        elif len(guess) != 1:
+            print("input only one character")
+        elif guess in secret_word and guess != "Hint" and len(guess) == 1 :
+            indices = [i for i, letter in enumerate(secret_word) if letter == guess]
+            for index in indices:
+                current_word[index] = guess
+            print("Correct!")
+            print(' '.join(current_word))
+            made_guess += guess
+            correct_guess = True
 
-    else:
-        tries -= 1
-        print("Incorrect. You have {} tries left.".format(tries))
-        correct_guess = False
-     
+        else:
+            tries -= 1
+            print("Incorrect. You have {} tries left.".format(tries))
+            correct_guess = False
+
+while tries > 0 and '_' in current_word and valid == True:       
+    guesses()
 
      
 if '_' not in current_word:
     print("Congratulations, you guessed the word {}!".format(secret_word))
 elif tries == 0:
     print("Hangman! The word was {}.".format(secret_word))
-
