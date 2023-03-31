@@ -1,5 +1,5 @@
 import random
-import requests
+import tkinter
 #choose a word 
 #only end the game when the word is finished or they ran out of tries
 #ask the user to guess a character of the word
@@ -24,7 +24,6 @@ word_dict = {
 secret_word = random.choice(list(word_dict.keys())) 
 current_word = ["_"] * len(secret_word)
 tries = 6
-
 difficulty = input("Please select difficulty (easy,medium or hard):")
 easy = False
 medium = False
